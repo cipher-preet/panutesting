@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: "https://localhost:5173/",
+    origin: ["https://localhost:5173/","https://49.43.101.162:5173"],
     credentials: true,
   })
 );
