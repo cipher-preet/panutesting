@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: "*",
+    origin: "https://localhost:5173/",
     credentials: true,
   })
 );
@@ -85,7 +85,12 @@ app.post("/login", async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.cookie("authToken", token);
+res.cookie("authToken",token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+      });
 
     res.json({ success: true, message:"login successfully" });
   } catch (error) {
